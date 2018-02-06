@@ -3,6 +3,7 @@ import {
 } from '../actions/selectedCell'
 
 const defaultState = {
+  isAvailable: false,
   x: null,
   y: null
 }
@@ -12,6 +13,7 @@ const selectedCell = (state = defaultState, action) => {
     case SET_SELECTED_CELL:
       let { x, y } = action
       return {
+        isAvailable: true,
         x,
         y
       }
