@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'normalize.css'
-import Section from './components/section/section'
+import GameArea from './components/game-area/game-area'
 
 ReactDOM.render(
   <div>
-    <Section/>
+    <GameArea/>
   </div>,
   document.getElementById('app')
 )
