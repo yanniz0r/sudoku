@@ -10,11 +10,15 @@ class Cell extends Component {
     selectCell(x, y)
   }
 
+  isSelected = () => {
+    const { x, y, selectedCell } = this.props
+    return x == selectedCell.x && y == selectedCell.y
+  }
+
   render = () => {
     const { x, y, selectedCell } = this.props
-    console.log(selectedCell)
     return <div className='cell-container' onClick={this.select}>
-      <div className='cell'>
+      <div className={`cell ${this.isSelected() ? 'selected' : ''}`}>
         <div className='cell-content'>
           Value
         </div>
