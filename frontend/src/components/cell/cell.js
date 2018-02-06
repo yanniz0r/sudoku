@@ -15,12 +15,21 @@ class Cell extends Component {
     return x == selectedCell.x && y == selectedCell.y
   }
 
+  getValue = () => {
+    const { x, y, values } = this.props
+    try {
+      return values[x][y]
+    } catch(e) {
+      return null
+    }
+  }
+
   render = () => {
     const { x, y, selectedCell } = this.props
     return <div className='cell-container' onClick={this.select}>
       <div className={`cell ${this.isSelected() ? 'selected' : ''}`}>
         <div className='cell-content'>
-          Value
+          { this.getValue() }
         </div>
         <div className='cell-coords'>
           {`${x}/${y}`}
@@ -32,9 +41,10 @@ class Cell extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { selectedCell } = state
+  const { selectedCell, values } = state
   return {
-    selectedCell
+    selectedCell,
+    values
   }
 }
 

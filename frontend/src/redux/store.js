@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux'
 import selectedCell from './reducers/selectedCell'
+import values from './reducers/values'
 
 const rootReducer = combineReducers({
-  selectedCell
+  selectedCell,
+  values
 })
 
 let store = createStore(rootReducer)
