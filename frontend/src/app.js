@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'normalize.css'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 import GameArea from './components/game-area/game-area'
 
 ReactDOM.render(
-  <div>
+  <Provider store={store}>
     <GameArea/>
-  </div>,
+  </Provider>,
   document.getElementById('app')
 )
