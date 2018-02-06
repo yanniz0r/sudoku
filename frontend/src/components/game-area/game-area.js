@@ -7,9 +7,9 @@ class GameArea extends Component {
   renderRow = (y) => {
     const sections = []
     for(let x = 0; x < 3; x++) {
-      sections.push(<Section x={x} y={y}/>)
+      sections.push(<Section key={x} x={x} y={y}/>)
     }
-    return <div className='section-row'>{sections}</div>
+    return <div className='section-row' key={y}>{sections}</div>
   }
 
   renderRows = () => {

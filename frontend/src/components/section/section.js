@@ -17,9 +17,9 @@ class Section extends Component {
   renderRow = (y) => {
     const cells = []
     for(let x = 0; x < 3; x++) {
-      cells.push(<Cell x={this.absoluteX(x)} y={this.absoluteY(y)}/>)
+      cells.push(<Cell key={x} x={this.absoluteX(x)} y={this.absoluteY(y)}/>)
     }
-    return <div className='cell-row'>
+    return <div className='cell-row' key={y}>
       { cells }
     </div>
   }
