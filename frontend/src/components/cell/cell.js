@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './cell.less'
 import { connect } from 'react-redux'
 import { setSelectedCell } from '../../redux/actions/selectedCell'
-
+import Sudoku from '../../util/sudoku'
 class Cell extends Component {
 
   select = () => {
@@ -27,7 +27,7 @@ class Cell extends Component {
   render = () => {
     const { x, y, selectedCell } = this.props
     return <div className='cell-container' onClick={this.select}>
-      <div className={`cell ${this.isSelected() ? 'selected' : ''}`}>
+      <div className={`cell ${this.isSelected() ? 'selected' : ''} ${Sudoku.hasConflict(x, y) ? 'conflict' : ''}`}>
         <div className='cell-content'>
           { this.getValue() }
         </div>
