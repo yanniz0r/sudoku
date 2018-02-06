@@ -27,7 +27,7 @@ class Cell extends Component {
   render = () => {
     const { x, y, selectedCell } = this.props
     return <div className='cell-container' onClick={this.select}>
-      <div className={`cell ${this.isSelected() ? 'selected' : ''} ${Sudoku.hasConflict(x, y) ? 'conflict' : ''}`}>
+      <div className={`cell selectable ${this.isSelected() ? 'selected' : ''} ${Sudoku.hasConflict(x, y) ? 'conflict' : ''}`}>
         <div className='cell-content'>
           { this.getValue() }
         </div>
