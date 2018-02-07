@@ -1,4 +1,5 @@
 import store from '../redux/store'
+import { setValue } from '../redux/actions/values'
 
 class Sudoku {
 
@@ -11,6 +12,37 @@ class Sudoku {
       }
     }
     return xValues
+  }
+
+  static forEachCoordinate = (callback) => {
+    for(let x = 0; x < 9; x++) {
+      for(let y = 0; y < 9; y++) {
+        callback(x, y)
+      }
+    }
+  }
+
+  static fill = () => {
+    Sudoku.forEachCoordinate((x, y) => {
+      const shouldFillField = Math.random() > 0.5
+      if(shouldFillField) {
+        const allowedValues = Sudoku.availableValuesForField(x, y)
+        const randomValue = allowedValues[Math.floor(Math.random()*allowedValues.length)]
+        store.dispatch(setValue(x, y, randomValue))
+      }
+    })
+  }
+
+  static availableValuesForField = (x, y) => {
+    const possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const { values } = store.getState()
+    const usedValues = [
+      ...Sudoku.getXValues(y),
+      ...Sudoku.getYValues(x),
+      ...Sudoku.getSectionValues(x, y)
+    ]
+    const allowedValues = possibleValues.filter(value => usedValues.indexOf(value) === -1)
+    return allowedValues
   }
 
   static getSectionValues = (x, y) => {

@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import Section from '../section/section'
 import './game-area.less'
+import Sudoku from '../../util/sudoku'
 
 class GameArea extends Component {
+
+  componentWillMount = () => {
+    Sudoku.fill()
+  }
 
   renderRow = (y) => {
     const sections = []
