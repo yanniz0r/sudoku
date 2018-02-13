@@ -1,4 +1,4 @@
-@border: solid 2px black;
+@border: solid 2px #2d3436;
 
 .cell-container {
   flex: 100/3;
@@ -16,22 +16,24 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    transition: all 0.2s;
     &.selectable {
       cursor: pointer;
     }
     &.selected {
       font-size: 16pt;
-      background: hotpink;
+      background: #74b9ff;
     }
     &.conflict {
-      background: red;
+      background: #d63031;
+      color: #fff;
     }
     .cell-coords {
       position: absolute;
       bottom: 0;
       right: 0;
       font-size: 10pt;
-      color: rgba(0,0,0,0.25);
+      color: #dfe6e9;
     }
   }
 }
