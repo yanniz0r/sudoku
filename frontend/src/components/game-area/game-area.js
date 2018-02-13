@@ -6,7 +6,7 @@ import Sudoku from '../../util/sudoku'
 class GameArea extends Component {
 
   componentWillMount = () => {
-    Sudoku.fill()
+    //Sudoku.fill()
   }
 
   renderRow = (y) => {

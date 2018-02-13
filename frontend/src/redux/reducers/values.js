@@ -1,6 +1,7 @@
 import { SET_VALUE } from '../actions/values'
+import { fill, grind } from '../../libraries/grid'
 
-const defaultState = {}
+const defaultState = grind(fill())
 
 const values = (state = defaultState, action) => {
   switch(action.type) {
