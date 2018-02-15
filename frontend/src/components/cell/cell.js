@@ -6,6 +6,7 @@ import Sudoku from '../../util/sudoku'
 class Cell extends Component {
 
   select = () => {
+    if(this.isDefinedByBaseGrid()) return
     const { x, y, selectCell } = this.props
     selectCell(x, y)
   }
@@ -15,21 +16,38 @@ class Cell extends Component {
     return x == selectedCell.x && y == selectedCell.y
   }
 
-  getValue = () => {
-    const { x, y, values } = this.props
-    try {
-      return values[x][y]
-    } catch(e) {
-      return null
+  getBaseValue = () => {
+    const { x, y, baseGrid } = this.props
+    const baseGridX = baseGrid[x]
+    if(baseGridX){
+      return baseGridX[y]
     }
   }
 
+  isDefinedByBaseGrid = () => {
+    return !!this.getBaseValue()
+  }
+
+  getValue = () => {
+    const { x, y, values } = this.props
+    const baseGridValue = this.getBaseValue()
+    if(baseGridValue) {
+      return baseGridValue
+    }
+    const valuesX = values[x]
+    if(valuesX) {
+      return valuesX[y]
+    }
+    return null
+  }
+
   render = () => {
-    const { x, y, selectedCell } = this.props
+    const { x, y, selectedCell, values, baseGrid } = this.props
+    const sudoku = new Sudoku(values, baseGrid)
     return <div className='cell-container' onClick={this.select}>
-      <div className={`cell selectable ${this.isSelected() ? 'selected' : ''} ${Sudoku.hasConflict(x, y) ? 'conflict' : ''}`}>
+      <div className={`cell selectable ${this.isSelected() ? 'selected' : ''} ${sudoku.hasConflict(x, y) ? 'conflict' : ''} ${this.isDefinedByBaseGrid() ? 'base' : ''}`}>
         <div className='cell-content'>
-          { this.getValue() }
+          { sudoku.valueFor(x, y) }
         </div>
         <div className='cell-coords'>
           {`${x}/${y}`}
@@ -41,10 +59,11 @@ class Cell extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { selectedCell, values } = state
+  const { selectedCell, values, baseGrid } = state
   return {
     selectedCell,
-    values
+    values,
+    baseGrid
   }
 }
 

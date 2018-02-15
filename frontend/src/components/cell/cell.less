@@ -6,6 +6,8 @@
   padding-top: 100/3%;
   .cell {
     font-family: "Helvetica";
+    font-size: 24pt;
+    font-weight: 400;
     border-left: @border;
     border-top: @border;
     position: absolute;
@@ -17,11 +19,14 @@
     align-items: center;
     box-sizing: border-box;
     transition: all 0.2s;
+    &.base {
+      font-weight: bold;
+      background: rgba(0,0,0,0.075)
+    }
     &.selectable {
       cursor: pointer;
     }
     &.selected {
-      font-size: 16pt;
       background: #74b9ff;
     }
     &.conflict {
