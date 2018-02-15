@@ -7,3 +7,10 @@ export const setValue = (x, y, value) => {
     value
   }
 }
+
+export const RESET_VALUES = 'RESET_VALUES'
+export const resetValues = () => {
+  return {
+    type: RESET_VALUES
+  }
+}
